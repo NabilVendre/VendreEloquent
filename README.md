@@ -15,10 +15,16 @@ PHP 8.0
 ```
 
 # Installation
-Rename .env.example and configure your database settings.
+Run `composer require --dev vendre-ecommerce/eloquent-mysqli`
 
-You can create a test.php file to try it out.
+Run `composer install`
+
+Rename `.env.example` and configure your database settings.
+
+You can create a `test.php` file to try it out.
+
 You can also use this code for inspiration on how to install this into your own system.
+
 Remember that `Dotenv` is not required for this library, that's why its under composers 'require-dev'.
 ```php
 <?php
@@ -63,8 +69,6 @@ $eloquentBooter = new EloquentBooter();
 $eloquentBooter->bootEloquent($mysqliConnection, $eloquentConfig);
 
 ```
-
-Run `composer install`
 
 # Testing
 We have included some tests in /tests/phpunit.
