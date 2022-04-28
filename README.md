@@ -64,6 +64,8 @@ $eloquentBooter->bootEloquent($mysqliConnection, $eloquentConfig);
 
 ```
 
+Run `composer install`
+
 # Testing
 We have included some tests in /tests/phpunit.
 
