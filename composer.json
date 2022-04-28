@@ -1,0 +1,28 @@
+{
+    "name": "vendre-ecommerce/eloquent-mysqli",
+    "description": "An extension to handle a MySQLi connection with Eloquent",
+    "type": "library",
+    "keywords": ["Laravel", "Illuminate", "Database", "PDO", "MySQL", "mysqli", "driver", "extension", "connector"],
+    "require": {
+        "illuminate/database": "^8.83",
+        "php": ">=7.3",
+        "illuminate/support": "^8.83",
+        "illuminate/contracts": "^8.83"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "VendreEcommerce\\EloquentMysqli\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Löfgren",
+            "email": "daniel@vendre.se"
+        }
+    ]
+}
