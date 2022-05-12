@@ -1,7 +1,10 @@
 # eloquent-mysqli
 An extension to handle a MySQLi connection with Eloquent
 
-This project is based off https://github.com/shakahl/laravel-eloquent-mysqli.
+This library is based off https://github.com/shakahl/laravel-eloquent-mysqli.
+
+This library is used in the core of Vendre Ecommerce and is up to date.
+Pull requests are welcomed.
 
 Currently supports:
 ```
