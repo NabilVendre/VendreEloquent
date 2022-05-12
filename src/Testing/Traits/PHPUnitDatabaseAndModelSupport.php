@@ -43,6 +43,8 @@ trait PHPUnitDatabaseAndModelSupport
 
     public function createTestTable(string $tableName, array $tableConfig)
     {
+        Schema::dropIfExists($tableName);
+
         Schema::create($tableName, function(Blueprint $table) use ($tableConfig) {
             foreach($tableConfig as $columnName => $columnType) {
                 if (is_integer($columnName) && is_string($columnType)) {
