@@ -355,11 +355,13 @@ class MySQLiConnection extends Connection implements ConnectionInterface
 
             $result = $statement->get_result();
 
+            // For queries such as SELECT, SHOW, DESCRIBE or EXPLAIN, the statement will return a result set.
+            // For other queries, such as INSERT, UPDATE, we get the affected_rows from the statement directly
             if ($result) {
                 return $result->num_rows;
             }
 
-            return 0;
+            return $statement->affected_rows;
         });
     }
 
