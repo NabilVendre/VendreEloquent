@@ -6,6 +6,7 @@ use Illuminate\Database\QueryException;
 
 /**
  * We use this test to test all the functions in Illuminate\Database\ConnectionInterface.
+ * We are using the PHPUnitDatabaseAndModelSupport-trait to automatically create a test table that we can run the test towards.
  */
 final class EloquentConnectionInterfaceTest extends \PHPUnit\Framework\TestCase
 {
@@ -224,6 +225,8 @@ final class EloquentConnectionInterfaceTest extends \PHPUnit\Framework\TestCase
 
     public function testCanPerformStatement()
     {
+        $this->createNewTestModel();
+
         $query = "SELECT * FROM " . $this->testTableName . " LIMIT ?";
         $bindings = [1];
 
@@ -232,14 +235,18 @@ final class EloquentConnectionInterfaceTest extends \PHPUnit\Framework\TestCase
 
     public function testCanPerformAffectingStatement()
     {
+        $this->createNewTestModel();
+
         $query = "SELECT * FROM " . $this->testTableName . " LIMIT ?";
         $bindings = [1];
 
-        $this->assertTrue((new TestModel())->getConnection()->affectingStatement($query, $bindings) === 1);
+        $this->assertEquals(1, (new TestModel())->getConnection()->affectingStatement($query, $bindings));
     }
 
     public function testCanPerformUnprepared()
     {
+        $this->createNewTestModel();
+        
         $query = "SELECT * FROM " . $this->testTableName . " LIMIT 1";
 
         $this->assertTrue((new TestModel())->getConnection()->unprepared($query));
