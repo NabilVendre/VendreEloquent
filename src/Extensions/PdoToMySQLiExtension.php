@@ -51,7 +51,7 @@ final class PdoToMySQLiExtension extends mysqli
      * PDO exec() -> mysqli exec
      * mysqli::exec doesn't exist, so we create the same behaviour as PDO::exec
      * 
-     * @return int|false
+     * @return int|bool
      */
     public function exec($statement)
     {
