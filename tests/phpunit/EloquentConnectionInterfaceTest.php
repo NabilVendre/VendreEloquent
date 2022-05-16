@@ -103,7 +103,7 @@ final class EloquentConnectionInterfaceTest extends \PHPUnit\Framework\TestCase
 
     public function testShouldRaiseQueryExceptionWhenSelectingFromUnknownTable()
     {
-        $unknownTableName = time() . rand();
+        $unknownTableName = 't' . time() . rand();
         $query = "SELECT * FROM " . $unknownTableName;
 
         $this->expectException(QueryException::class);
