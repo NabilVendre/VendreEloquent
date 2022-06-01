@@ -14,9 +14,16 @@ use mysqli;
 
 final class EloquentBooter extends ServiceProvider
 {
+    private static $container;
+    private static $capsule;
+
     public function __construct()
     {
-        parent::__construct(new Container());
+        if (!static::$container) {
+            static::$container = new Container();
+        }
+        
+        parent::__construct(static::$container);
     }
 
     public function bootEloquent(mysqli $mysqliConnection, array $config): void
@@ -34,16 +41,24 @@ final class EloquentBooter extends ServiceProvider
         // Need to boot up the Schema as well in order to use the SchemaBuilder
         Schema::setFacadeApplication($this->app);
 
-        $capsule = new Capsule($this->app);
-        $capsule->addConnection([
+        if (!static::$capsule) {
+            static::$capsule = new Capsule($this->app);
+        }
+        
+        static::$capsule->addConnection([
             'driver'        => 'mysqli',
             'connection'    => $mysqliConnection,
             'database'      => $config['database'],
             'host'          => $config['host'],
         ], $config['connectionName']);
-        $capsule->setAsGlobal();
-        $capsule->bootEloquent();
+        static::$capsule->setAsGlobal();
+        static::$capsule->bootEloquent();
 
-        $this->app['db'] = $capsule;
+        $this->app['db'] = static::$capsule;
+    }
+
+    public function destroyContainer()
+    {
+        static::$container = null;
     }
 }
