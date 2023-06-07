@@ -617,11 +617,6 @@ class MySQLiConnection extends Connection implements ConnectionInterface
      */
     protected function quote($value, $type = null)
     {
-        // Check if value is an expression
-        if (is_callable($value)) {
-            return $value($this);
-        }
-
         if (!$type) {
             $type = gettype($value);
         }
